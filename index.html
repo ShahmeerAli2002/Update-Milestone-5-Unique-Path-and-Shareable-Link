@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <style>
+       
+               * {
+                   background-color: #00fff249;
+                   box-shadow: 0 0 10px #02151b,
+                              0 0 20px #00a2ff,
+                              0 0 30px #00aeff,
+                              0 0 40px #01162e;
+               }
+       
+       body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('animations.gif');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            min-height: 100vh;
+            -webkit-overflow-scrolling: touch;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .parent {
+            perspective: 1000px;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .child {
+            transform-style: preserve-3d;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .child img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .resume-btn {
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #05a9becc);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transform: translateZ(30px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .resume-btn a {
+            color: white;
+            text-decoration: none;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .resume-btn:hover {
+            transform: translateZ(40px) scale(1.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #ff8787, #08dfd0);
+        }
+
+        .trailing-effect {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top: 4px solid rgba(0, 38, 255, 0.877);
+            border-right: 4px solid rgba(251, 255, 0, 0.822);
+            animation: rotateTail 1.5s linear infinite;
+        }
+
+        .trailing-effect::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top: 4px solid rgba(255, 107, 107, 0.7);
+            border-right: 4px solid rgba(255, 107, 107, 0.7);
+            animation: rotateTail 2s linear infinite reverse;
+            top: 20px;
+            left: 20px;
+        }
+
+        .creator-text {
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            color: rgb(22, 1, 1);
+            font-size: 30px;
+            animation: slideInCreator 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInCreator {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes rotateTail {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .button-container:hover .trailing-effect {
+            animation: rotateTail 0.8s linear infinite;
+        }
+
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #05a9becc);
+            transform: translateX(-100%);
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            body, html {
+                background-size: contain;
+                height: 100vh;
+                width: 100vw;
+            }
+            .child img {
+                object-fit: contain;
+                height: 100vh;
+                width: 100vw;
+            }
+            .resume-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .trailing-effect {
+                width: 200px;
+                height: 200px;
+            }
+
+            .trailing-effect::after {
+                width: 150px;
+                height: 150px;
+                top: 20px;
+                left: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body, html {
+                background-size: contain;
+                height: 100vh;
+                width: 100vw;
+            }
+            .child img {
+                object-fit: contain;
+                height: 100vh;
+                width: 100vw;
+            }
+            .resume-btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .trailing-effect {
+                width: 150px;
+                height: 150px;
+            }
+
+            .trailing-effect::after {
+                width: 100px;
+                height: 100px;
+                top: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition"></div>
+    <header>
+        <div class="parent">
+            <div class="child">
+                <div class="button-container">
+                    <div class="trailing-effect"></div>
+                    <button class="resume-btn" onclick="pageFlip()">
+                        <a href="1index.html" id="nextPageLink" onclick="event.preventDefault()">Generate Your Resume</a>
+                    </button> 
+                </div>
+            </div>
+        
+            <script>
+                function pageFlip() {
+                    const transition = document.querySelector('.page-transition');
+                    document.getElementById('nextPageLink').textContent = "Your Resume is Generating...";
+                    
+                    // Add creator text
+                    const creatorText = document.createElement('div');
+                    creatorText.style.position = 'fixed';
+                    creatorText.style.bottom = '40px';
+                    creatorText.style.right = '20px';
+                    creatorText.style.color = 'black';
+                    creatorText.style.fontSize = '20px';
+                    creatorText.textContent = 'Created by Shahmeer Ali';
+                    document.body.appendChild(creatorText);
+                    
+                    transition.style.animation = 'slideIn 1s forwards';
+                    
+                    setTimeout(() => {
+                        transition.style.animation = 'slideOut 1s forwards';
+                    }, 1000);
+
+                    setTimeout(() => {
+                        window.location.href = "1index.html";
+                    }, 4000);
+                }
+            </script>
+        </div>
+    </header>
+</body>
+</html>

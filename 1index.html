@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Resume Template</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="resume-container">
+        <div class="left-section">
+            <div class="profile-picture">
+                <img id="profile-image" src="boy cartoon.jpg" alt="Profile Picture">
+            </div>
+            <h2 id="name" contenteditable="true">Ornela Smith</h2>
+            <p id="job-title" contenteditable="true">Graphic Designer</p>
+            <div class="contact-info">
+                <h3>Contact Me:</h3>
+                <p><strong>Phone:</strong> <span id="phone" contenteditable="true">123-656-5425</span></p>
+                <p><strong>Email:</strong> <span id="email" contenteditable="true">contactme@email.com</span></p>
+                <p><strong>Web:</strong> <span id="web" contenteditable="true">www.contactme.com</span></p>
+                <p><strong>Address:</strong> <span id="address" contenteditable="true">123, Street Oldaho, New York City, USA</span></p>
+            </div>
+            <div class="skills">
+                <h3>Skills</h3>
+                <p contenteditable="true">Photoshop</p>
+                <p contenteditable="true">Illustrator</p>
+                <p contenteditable="true">Indesign</p>
+                <p contenteditable="true">Microsoft Word</p>
+            </div>
+            <div class="languages">
+                <h3>Languages</h3>
+                <div class="language-circle" contenteditable="true">English</div>
+                <div class="language-circle" contenteditable="true">Spanish</div>
+                <div class="language-circle" contenteditable="true">French</div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="section">
+                <h3>Profile</h3>
+                <p id="profile" contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            </div>
+            <div class="section">
+                <h3>Experience</h3>
+                <p contenteditable="true"><strong>Year: 2005-2007</strong> Bachelor of Fine Arts <br>Your College name here</p>
+                <p contenteditable="true"><strong>Year: 2008-2010</strong> Master of Fine Arts <br>Your College name here</p>
+            </div>
+            <div class="section">
+                <h3>Education</h3>
+                <p contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="buttons">
+        <button id="update-image-btn">Update Profile Image</button>
+        <button id="download-btn">Download PDF</button>
+        <button id="share-btn">Share</button>
+        <button id="edit-btn">Edit</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
